@@ -1,7 +1,12 @@
 import { fibs, fibsRec } from "../modules/fibs";
 
 describe('fibs()', () => {
-    test.skip.each([
+    test.each([
+        {
+            desc: 'empty array in sequence',
+            input: 0,
+            result: [],
+        },
         {
             desc: 'the first value in sequence',
             input: 1,
@@ -29,6 +34,11 @@ describe('fibs()', () => {
 
 describe('fibsRec()', () => {
     test.each([
+        {
+            desc: 'empty array in sequence',
+            input: 0,
+            result: [],
+        },
         {
             desc: 'the first number in sequence',
             input: 1,

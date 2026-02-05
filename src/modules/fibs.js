@@ -1,6 +1,9 @@
 export function fibs(num) {
-    const sequence = [0, 1];
+    if (!Number.isInteger(num)) throw new TypeError('num must be an Integer.');
+    if (num === 0) return [];
     if (num === 1) return [0];
+
+    const sequence = [0, 1];
     if (num === 2) return sequence;
 
     for (let i = 1; i < num - 1; ++i) {
@@ -11,6 +14,8 @@ export function fibs(num) {
 }
 
 export function fibsRec(num) {
+    if (!Number.isInteger(num)) throw new TypeError('num must be an Integer.');
+    if (num <= 0) return [];
     if (num === 1) return [0];
 
     /**This array is the 'seed' of the fibonacci sequence.
