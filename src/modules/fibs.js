@@ -11,5 +11,5 @@ export function fibs(num) {
 }
 
 export function fibsRec(num) {
-    
+    if (num === 1) return [0];
 }
