@@ -47,3 +47,14 @@ export function fibsRec(num) {
     // Because the sequenceSeed has the first 2 values already, we subtract 2 from nums.
     return fibonacci(num - 2, sequenceSeed);
 }
+
+export function fibsAccum(num) {
+    if (num <= 0) return [];
+    if (num === 1) return [0];
+    if (num === 2) return [0, 1];
+
+    const previousSequence = fibsAccum(num - 1);
+    const currentSequence = [...previousSequence, previousSequence.at(-1) + previousSequence.at(-2)];
+
+    return currentSequence;
+}

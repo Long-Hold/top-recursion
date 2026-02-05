@@ -1,4 +1,4 @@
-import { fibs, fibsRec } from "../modules/fibs";
+import { fibs, fibsRec, fibsAccum } from "../modules/fibs";
 
 describe('fibs()', () => {
     test.each([
@@ -80,5 +80,37 @@ describe('fibsRec()', () => {
         ['string', 'hello, world'],
     ])('throws TypeError when passed "%s".', (description, input) => {
         expect(() => fibsRec(input)).toThrow(TypeError);
+    });
+});
+
+describe('fibsAccum()', () => {
+    test.each([
+        {
+            desc: 'empty array in sequence',
+            input: 0,
+            result: [],
+        },
+        {
+            desc: 'the first value in sequence',
+            input: 1,
+            result: [0],
+        },
+        {
+            desc: 'the first 2 values in sequence',
+            input: 2,
+            result: [0, 1],
+        },
+        {
+            desc: 'the first 3 values in sequence',
+            input: 3,
+            result: [0, 1, 1],
+        },
+        { 
+            desc: 'the first 8 values in sequence',
+            input: 8,
+            result: [0, 1, 1, 2, 3, 5, 8, 13],
+        }
+    ])('returns an array with $desc', ({input, result}) => {
+        expect(fibsAccum(input)).toStrictEqual(result);
     });
 });
