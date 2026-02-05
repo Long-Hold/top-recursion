@@ -29,7 +29,14 @@ describe('fibs()', () => {
         }
     ])('returns an array with $desc', ({input, result}) => {
         expect(fibs(input)).toStrictEqual(result);
-    })
+    });
+        test.each([
+        ['array', []],
+        ['float', 1.234],
+        ['string', 'hello, world'],
+    ])('throws TypeError when passed "%s".', (description, input) => {
+        expect(() => fibs(input)).toThrow(TypeError);
+    });
 });
 
 describe('fibsRec()', () => {
@@ -66,5 +73,12 @@ describe('fibsRec()', () => {
         },
     ])('returns the $desc', ({input, result}) => {
         expect(fibsRec(input)).toStrictEqual(result);
+    });
+    test.each([
+        ['array', []],
+        ['float', 1.234],
+        ['string', 'hello, world'],
+    ])('throws TypeError when passed "%s".', (description, input) => {
+        expect(() => fibsRec(input)).toThrow(TypeError);
     });
 });
