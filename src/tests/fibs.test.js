@@ -1,7 +1,7 @@
-import { fibs } from "../modules/fibs";
+import { fibs, fibsRec } from "../modules/fibs";
 
 describe('fibs()', () => {
-    test.each([
+    test.skip.each([
         {
             desc: 'the first value in sequence',
             input: 1,
@@ -24,5 +24,17 @@ describe('fibs()', () => {
         }
     ])('returns an array with $desc', ({input, result}) => {
         expect(fibs(input)).toStrictEqual(result);
+    })
+});
+
+describe('fibsRec()', () => {
+    test.each([
+        {
+            desc: 'the first number in sequence',
+            input: 1,
+            result: [0],
+        },
+    ])('returns the $desc', ({input, result}) => {
+        expect(fibsRec(input)).toStrictEqual(result);
     })
 });

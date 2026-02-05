@@ -9,3 +9,7 @@ export function fibs(num) {
 
     return sequence;
 }
+
+export function fibsRec(num) {
+    
+}
