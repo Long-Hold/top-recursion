@@ -6,14 +6,24 @@ function mergeSort(arr) {
     const halvedLength = Math.ceil(arr.length / 2);
 
     // Split the current array in half
+    /**
+     * This leverages the fact that each RECURSIVE call of merge sort returns a divided
+     * portion of the original array, so we take the left and right halves of that
+     * already divided array.
+     */
     const leftHalf = arr.slice(0, halvedLength);
     const rightHalf = arr.slice(halvedLength);
 
     console.log(`Left: ${leftHalf}. Right: ${rightHalf}`);
 
+    /**
+     * This portion then takes those divided halves, from the original divided array,
+     * to further reduce them.
+     */
     const leftSort = mergeSort(leftHalf);
     const rightSort = mergeSort(rightHalf);
     /**
+     * At this point, a comparison and merge of the leftSort and rightSort must occur.
      * Rely on the fact that the first index of either array is the smallest value
      */
 
