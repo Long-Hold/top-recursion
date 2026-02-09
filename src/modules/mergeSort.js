@@ -4,41 +4,40 @@ export function mergeSort(arr) {
     // If the array is not reduced to a single element, keep cutting it in half
     const halvedLength = Math.floor(arr.length / 2);
 
-    // Split the current array in half
     /**
      * This leverages the fact that each RECURSIVE call of merge sort returns a divided
      * portion of the original array, so we take the left and right halves of that
      * already divided array.
      */
-    const leftHalf = arr.slice(0, halvedLength);
-    const rightHalf = arr.slice(halvedLength);
-
-    /**
-     * This portion then takes those divided halves, from the original divided array,
-     * to further reduce them.
-     */
-    const leftSort = mergeSort(leftHalf);
-    const rightSort = mergeSort(rightHalf);
-    /**
-     * At this point, a comparison and merge of the leftSort and rightSort must occur.
-     * Rely on the fact that the first index of either array is the smallest value
-     */
+    const leftHalf = mergeSort(arr.slice(0, halvedLength));
+    const rightHalf = mergeSort(arr.slice(halvedLength));
 
     let leftIndex = 0;
     let rightIndex = 0;
     const merged = [];
-    while (leftIndex < leftSort.length && rightIndex < rightSort.length) {
-        if (leftSort[leftIndex] <= rightSort[rightIndex]) {
-            merged.push(leftSort[leftIndex]);
+
+    /**
+     * The while loop will continue to run until of the arrays have been
+     * completely iterated through.
+     * 
+     * Because each sub-array is already sorted, we can gaurantee that when one array is
+     * passed through entirely before the other, the remaining values will be higher
+     * than any value in the fully iterated array.
+     * 
+     * This means we can push all remaining values from that array, in their current order,
+     * onto the end of sorted array.
+     */
+    while (leftIndex < leftHalf.length && rightIndex < rightHalf.length) {
+        if (leftHalf[leftIndex] <= rightHalf[rightIndex]) {
+            merged.push(leftHalf[leftIndex]);
             ++leftIndex;
         } else {
-            merged.push(rightSort[rightIndex]);
+            merged.push(rightHalf[rightIndex]);
             ++rightIndex;
         }
     }
 
-    if (leftIndex === leftSort.length) merged.push(...rightSort.slice(rightIndex));
-    else if (rightIndex === rightSort.length) merged.push(...leftSort.slice(leftIndex));
+    merged.push(...leftHalf.slice(leftIndex), ...rightHalf.slice(rightIndex));
 
     return merged;
 }
