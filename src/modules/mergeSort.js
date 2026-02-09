@@ -1,5 +1,4 @@
 export function mergeSort(arr) {
-    // console.log('This was printed recursively');
     if (arr.length <= 1) return arr;
 
     // If the array is not reduced to a single element, keep cutting it in half
@@ -43,5 +42,3 @@ export function mergeSort(arr) {
 
     return merged;
 }
-
-console.log(mergeSort([3, 2, 1, 13, 8, 5, 0, 1]))
